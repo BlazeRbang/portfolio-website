@@ -1,9 +1,16 @@
+/* Color Palette: Orange, Black, and Dark Grey */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #34495e;
-    --accent-color: #3498db;
-    --bg-color: #f9f9f9;
-    --text-color: #333;
+    --bg-color: #0a0a0a;         /* Deep Black for background */
+    --section-bg: #1a1a1a;       /* Dark Grey for sections */
+    --primary-color: #ff6600;    /* Bright Orange */
+    --text-color: #e0e0e0;       /* Light Grey for readability */
+    --text-muted: #999999;       /* Medium Grey for subtitles */
+    --sidebar-width: 250px;      /* Fixed width for the sidebar */
+}
+
+/* Enables smooth scrolling when sidebar links are clicked */
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -13,24 +20,106 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
+    display: flex; /* Aligns sidebar and main content side-by-side */
+}
+
+/* === Sidebar Styles === */
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: #000000;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: 2px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    z-index: 100;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #333;
+    margin-bottom: 1.5rem;
+}
+
+.sidebar-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 2rem;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links li {
+    text-align: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: block;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #000;
+    background-color: var(--primary-color);
+}
+
+/* === Main Content Styles === */
+.main-content {
+    margin-left: var(--sidebar-width); /* Pushes content to the right of sidebar */
+    width: calc(100% - var(--sidebar-width));
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: #111111;
+    border-bottom: 2px solid var(--primary-color);
+    padding: 4rem 1rem;
     text-align: center;
-    padding: 3rem 1rem;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    color: #ffffff;
 }
 
 header p {
     font-size: 1.2rem;
     margin-top: 0.5rem;
-    color: #ecf0f1;
+    color: var(--primary-color);
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.contact-info a, .contact-info span {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
 }
 
 .container {
@@ -40,46 +129,29 @@ header p {
 }
 
 section {
-    background: white;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    background: var(--section-bg);
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 h2 {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--accent-color);
+    border-bottom: 1px solid #333;
     padding-bottom: 0.5rem;
     margin-top: 0;
 }
 
-.contact-info {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.contact-info a {
-    color: #ecf0f1;
-    text-decoration: none;
-}
-
-.contact-info a:hover {
-    color: var(--accent-color);
-}
-
 .item-title {
     font-weight: bold;
-    font-size: 1.1rem;
-    color: var(--secondary-color);
+    font-size: 1.2rem;
+    color: #ffffff;
 }
 
 .item-subtitle {
     font-style: italic;
-    color: #666;
+    color: var(--text-muted);
     margin-bottom: 0.5rem;
 }
 
@@ -98,19 +170,19 @@ h2 {
     content: "▹";
     position: absolute;
     left: 0;
-    color: var(--accent-color);
+    color: var(--primary-color);
 }
 
-/* CV Download Button Styles */
+/* === Button Styles === */
 .cv-download {
-    text-align: center;
+    text-align: left;
     margin-top: 1.5rem;
 }
 
 .btn {
     display: inline-block;
-    background-color: var(--accent-color);
-    color: white;
+    background-color: var(--primary-color);
+    color: #000000;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
@@ -119,13 +191,47 @@ h2 {
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
+    background-color: #cc5200; /* Darker orange */
+    color: #ffffff;
 }
 
 footer {
     text-align: center;
     padding: 2rem;
-    background: var(--primary-color);
-    color: white;
-    margin-top: 2rem;
+    background: #000000;
+    color: var(--text-muted);
+    margin-top: auto;
+    border-top: 1px solid #333;
+}
+
+/* === Mobile Responsiveness === */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative; /* Removes fixed position on small screens */
+        border-right: none;
+        border-bottom: 2px solid var(--primary-color);
+        padding-top: 1rem;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .nav-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+    
+    .nav-links a {
+        padding: 0.5rem 1rem;
+    }
 }
