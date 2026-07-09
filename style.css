@@ -3,6 +3,7 @@
     --bg-color: #0a0a0a;         /* Deep Black for background */
     --section-bg: #1a1a1a;       /* Dark Grey for sections */
     --primary-color: #ff6600;    /* Bright Orange */
+    --secondary-color: #E97451;  /* Light Orange */
     --text-color: #e0e0e0;       /* Light Grey for readability */
     --text-muted: #999999;       /* Medium Grey for subtitles */
     --sidebar-width: 250px;      /* Fixed width for the sidebar */
@@ -74,6 +75,12 @@ body {
 }
 
 .nav-links a:hover {
+    color: #000;
+    background-color: var(--secondary-color);
+}
+
+/* Active state for when a section is in view */
+.nav-links a.active {
     color: #000;
     background-color: var(--primary-color);
 }
@@ -171,6 +178,27 @@ h2 {
     position: absolute;
     left: 0;
     color: var(--primary-color);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 1rem;
+    background-color: #111111;
+    border: 1px solid #333;
+    color: var(--text-color);
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
 }
 
 /* === Button Styles === */

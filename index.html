@@ -18,6 +18,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -42,7 +43,7 @@
                     I am a second year Degree in Computer Science student with foundational coding experience in Python and Java. I am passionate and highly motivated to learn new knowledge and skills, having experienced collaborative website development through group projects. I am currently expanding my skills in programming for data analysis and Linux configuration.</p>
                 
                 <div class="cv-download">
-                    <a href="Wan_Hon_Kit_CV.pdf" download class="btn">📄 Download My CV</a>
+                    <a href="WanHonKit_CV.pdf" download class="btn">📄 Download My CV</a>
                 </div>
             </section>
 
@@ -62,13 +63,25 @@
                 <h2>Academic Projects</h2>
                 <ul class="project-list">
                     <li>
-                        <strong>All-in-One Facility Management System & IQ Test Website:</strong> Developed robust web platforms utilizing HTML, CSS, JavaScript, PHP, and MySQL.
+                        <details>
+                            <summary class="item-title" style="cursor: pointer;">All-in-One Facility Management System & IQ Test Website</summary>
+                            <p class="item-subtitle">Developed robust web platforms utilizing HTML, CSS, JavaScript, PHP, and MySQL.</p>
+                            <img src="test.png" alt="Screenshot of the website" style="max-width: 100%; border-radius: 5px; margin-top: 10px; border: 1px solid #333;">
+                        </details>
                     </li>
                     <li>
-                        <strong>Hostel Management System:</strong> Built an application using Java, applying Object-Oriented Programming principles.
+                        <details>
+                            <summary class="item-title" style="cursor: pointer;">Hostel Management System (Java)</summary>
+                            <p class="item-subtitle">Built an application using Java, applying Object-Oriented Programming principles.</p>
+                            <img src="test.png" alt="Screenshot of the Java GUI" style="max-width: 100%; border-radius: 5px; margin-top: 10px; border: 1px solid #333;">
+                        </details>
                     </li>
                     <li>
-                        <strong>Customer, User, and Inventory Management System:</strong> Programmed a comprehensive management solution using Python.
+                        <details>
+                            <summary class="item-title" style="cursor: pointer;">Customer, User, and Inventory Management System</summary>
+                            <p class="item-subtitle">Programmed a comprehensive management solution using Python.</p>
+                            <img src="test.png" alt="Screenshot of the website" style="max-width: 100%; border-radius: 5px; margin-top: 10px; border: 1px solid #333;">
+                        </details> 
                     </li>
                 </ul>
             </section>
@@ -82,23 +95,66 @@
                 <br>
                 <div>
                     <div class="item-title">Diploma in ICT with Specialism in Software Engineering</div>
-                    <div class="item-subtitle">Asia Pacific University | 2023 - 2025 | CGPA: 3.87</div>
+                    <div class="item-subtitle">Asia Pacific University | 2023 - 2025 | CGPA: 3.86</div>
                 </div>
+            </section>
+
+            <section id="extracurriculars">
+                <h2>Extracurriculars</h2>
+                <ul>
+                    <li><strong>Volunteer, Data Science Week:</strong> Assisted in organizing and managing duties for the Asia Pacific Analytic Club.</li>
+                    <li><strong>Campus Entrepreneurship:</strong> Gained hands-on business and communication experience by operating a student booth on campus.</li>
+                </ul>
             </section>
 
             <section id="skills">
                 <h2>Technical Skills</h2>
-                <p><strong>Languages:</strong> Java, Python, HTML, CSS, JavaScript, PHP, R Programming, VBScript</p>
+                <p><strong>Programming Languages:</strong> Java, Python, HTML, CSS, JavaScript, PHP, R Programming, VBScript</p>
                 <p><strong>Database & Systems:</strong> MySQL, Microsoft SQL Server, Linux (Rocky Server & Ubuntu Client)</p>
                 <p><strong>Concepts:</strong> Object-Oriented Programming, Web Development, Database Management</p>
             </section>
 
+             <section id="contact">
+                <h2>Get In Touch</h2>
+                <p>I am currently open to new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+                <form action="https://formspree.io/f/mojoznor" method="POST" class="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </section>
         </div>
 
         <footer>
             <p>&copy; 2026 Wan Hon Kit. Designed and built from scratch.</p>
         </footer>
     </main>
+    <script>
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
 
+        window.addEventListener("scroll", () => {
+            let current = "";
+            
+            // Find which section is currently on the screen
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // If the user has scrolled past the top third of the section
+                if (pageYOffset >= (sectionTop - 100)) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            // Remove 'active' class from all links, then add it to the current one
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
