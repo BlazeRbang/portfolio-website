@@ -6,7 +6,7 @@
     --secondary-color: #E97451;  /* Light Orange */
     --text-color: #e0e0e0;       /* Light Grey for readability */
     --text-muted: #999999;       /* Medium Grey for subtitles */
-    --sidebar-width: 250px;      /* Fixed width for the sidebar */
+    --sidebar-width: 200px;      /* Fixed width for the sidebar */
 }
 
 /* Enables smooth scrolling when sidebar links are clicked */
@@ -35,14 +35,12 @@ body {
     border-right: 2px solid var(--primary-color);
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
+    padding-top: 0.8rem;
     z-index: 100;
 }
 
 .sidebar-header {
     text-align: center;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid #333;
     margin-bottom: 1.5rem;
 }
 
@@ -96,7 +94,7 @@ body {
 header {
     background-color: #111111;
     border-bottom: 2px solid var(--primary-color);
-    padding: 4rem 1rem;
+    padding: 1rem 1rem;
     text-align: center;
 }
 
@@ -112,21 +110,44 @@ header p {
     color: var(--primary-color);
 }
 
+/* Stacks the two rows vertically */
 .contact-info {
     display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* Controls the space between the top row and bottom row */
     margin-top: 1.5rem;
+}
+
+/* Aligns the items horizontally within their specific rows */
+.contact-details, .contact-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Controls the space between individual items */
     flex-wrap: wrap;
 }
 
 .contact-info a, .contact-info span {
     color: var(--text-color);
     text-decoration: none;
+    display: flex;       /* Aligns icon and text */
+    align-items: center; /* Centers them vertically */
+    gap: 0.5rem;         /* Adds breathing room between icon and text */
 }
 
 .contact-info a:hover {
     color: var(--primary-color);
+}
+
+.contact-info .fa-brands {
+    font-size: 1.8rem;
+    transition: color 0.3s ease;
+}
+
+/* NEW: Ensure regular icons (email/phone) are slightly bigger too */
+.contact-info .fa-solid {
+    font-size: 1.2rem;
+    color: var(--primary-color); /* Makes the little icons orange */
 }
 
 .container {
@@ -225,11 +246,36 @@ h2 {
 
 footer {
     text-align: center;
-    padding: 2rem;
+    padding: 1rem;
     background: #000000;
     color: var(--text-muted);
     margin-top: auto;
     border-top: 1px solid #333;
+}
+
+/* === Scroll Animation Styles === */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px); /* Pushes the section down slightly */
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform, visibility;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none; /* Brings it back to its normal position */
+    visibility: visible;
+}
+
+/* Optional: Ensures animations don't play for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-section {
+        transition: none;
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+    }
 }
 
 /* === Mobile Responsiveness === */
@@ -239,17 +285,22 @@ footer {
     }
     
     .sidebar {
-        width: 100%;
+        /* width: 100%;
         height: auto;
-        position: relative; /* Removes fixed position on small screens */
+        position: relative; 
         border-right: none;
         border-bottom: 2px solid var(--primary-color);
-        padding-top: 1rem;
+        padding-top: 1rem; */
+        display: none;
     }
     
     .main-content {
         margin-left: 0;
         width: 100%;
+    }
+
+    .footer {
+        padding: 0;
     }
     
     .nav-links {
@@ -261,5 +312,21 @@ footer {
     
     .nav-links a {
         padding: 0.5rem 1rem;
+    }
+
+    /* Reduces the gap outside the sections */
+    .container {
+        padding: 0 0.5rem; 
+        margin: 0;
+    }
+    
+    /* Reduces the gap inside the sections */
+    section {
+        padding: 1.5rem 1rem; 
+    }
+
+    /* Reduces the bullet point indentation */
+    .project-list li {
+        padding-left: 1rem; 
     }
 }
