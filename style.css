@@ -45,7 +45,10 @@ body {
 }
 
 .sidebar-header h2 {
-    color: var(--primary-color);
+    background: linear-gradient(45deg, #ffffff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0;
     font-size: 2rem;
 }
@@ -78,8 +81,15 @@ body {
 
 /* Active state for when a section is in view */
 .nav-links a.active {
-    color: #000;
-    background-color: var(--primary-color);
+    /* 1. Remove the solid background and make the text orange */
+    background-color: rgba(255, 102, 0, 0.08); /* A barely visible, translucent orange tint */
+    color: var(--primary-color);
+    
+    /* 2. Create the modern edge highlight */
+    box-shadow: inset 4px 0 0 0 var(--primary-color); 
+    
+    /* Optional: Make the active text slightly bolder */
+    font-weight: bold;
 }
 
 /* === Main Content Styles === */
@@ -100,7 +110,10 @@ header {
 header h1 {
     margin: 0;
     font-size: 3rem;
-    color: #ffffff;
+    background: linear-gradient(45deg, #ffffff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 header p {
@@ -161,6 +174,14 @@ section {
     margin-bottom: 2.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    border: 1px solid transparent; /* Prepares the border for the hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px); /* Lifts the section up slightly */
+    border-color: #333333; /* Adds a subtle outline */
+    box-shadow: 0 10px 25px rgba(255, 102, 0, 0.08); /* Faint orange glow */
 }
 
 h2 {
@@ -195,8 +216,70 @@ details[open] .item-title {
 
 .project-list li {
     margin-bottom: 1rem;
-    padding-left: 1.5rem;
     position: relative;
+}
+
+/* === Project Accordion Animation === */
+details[open] .project-content {
+    animation: slideDownFade 0.4s ease-out forwards;
+    transform-origin: top; /* Ensures the animation slides down from the title */
+}
+
+/* The actual animation keyframes */
+@keyframes slideDownFade {
+    0% {
+        opacity: 0;
+        transform: translateY(-15px) scaleY(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+/* === Skills Section Styles === */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.skill-category h3 {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+}
+
+.skill-category h3 i {
+    color: var(--primary-color); /* Makes the icons orange */
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skill-tags span {
+    background-color: #111111;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px; /* Creates the rounded "pill" shape */
+    font-size: 0.95rem;
+    border: 1px solid #333333;
+    transition: all 0.3s ease;
+    cursor: default; /* Keeps the standard arrow cursor so it doesn't look like a clickable link */
+}
+
+.skill-tags span:hover {
+    background-color: var(--primary-color);
+    color: #000000;
+    border-color: var(--primary-color);
+    transform: translateY(-3px); /* Makes the tag float up slightly */
+    box-shadow: 0 4px 8px rgba(255, 102, 0, 0.2); /* Subtle orange glow */
 }
 
 .contact-form {
@@ -266,6 +349,24 @@ footer {
     visibility: visible;
 }
 
+/* === Custom Scrollbar === */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color); /* Deep black track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333333; /* Dark grey thumb */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color); /* Turns orange when they grab it! */
+}
+
 /* Optional: Ensures animations don't play for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .fade-in-section {
@@ -297,7 +398,7 @@ footer {
         width: 100%;
     }
 
-    .footer {
+    footer {
         padding: 0;
     }
     
@@ -321,10 +422,5 @@ footer {
     /* Reduces the gap inside the sections */
     section {
         padding: 1.5rem 1rem; 
-    }
-
-    /* Reduces the bullet point indentation */
-    .project-list li {
-        padding-left: 1rem; 
     }
 }
