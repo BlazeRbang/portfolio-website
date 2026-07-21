@@ -73,8 +73,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: #000;
-    background-color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 /* Active state for when a section is in view */
@@ -175,12 +174,18 @@ h2 {
     font-weight: bold;
     font-size: 1.2rem;
     color: #ffffff;
+    transition: color 0.3s ease; /* Adds a smooth fade effect */
 }
 
 .item-subtitle {
     font-style: italic;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
+}
+
+/* Changes the title color when the project details are expanded */
+details[open] .item-title {
+    color: var(--primary-color);
 }
 
 .project-list {
@@ -192,13 +197,6 @@ h2 {
     margin-bottom: 1rem;
     padding-left: 1.5rem;
     position: relative;
-}
-
-.project-list li::before {
-    content: "▹";
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
 }
 
 .contact-form {
